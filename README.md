@@ -1,72 +1,83 @@
 # v-dap-engine
 
-A high-performance Rust engine focused on low-latency concurrent processing, lock-free communication patterns, and cache-efficient data structures.
+High-performance packet and transaction processing engine written in Rust.
 
 ## Overview
 
-v-dap-engine is an experimental systems-engineering project exploring the performance characteristics of modern multi-core CPUs under high-concurrency workloads.
+v-dap-engine is a research and engineering project focused on low-latency, high-throughput message processing using lock-free architectures.
 
-The project investigates:
+The project investigates how queue design, cache locality, scheduling policies, and thread contention affect real-world performance on modern CPUs.
 
-* Lock-free communication patterns
-* Cache locality optimization
-* Queue-based architectures
-* Memory-access behavior
-* Throughput and tail-latency analysis
-* Performance benchmarking using Linux perf
+## Goals
+
+* Study lock-free architectures in Rust.
+* Measure scalability under increasing producer contention.
+* Analyze tail latency (P95/P99/P99.9).
+* Investigate cache behavior and synchronization costs.
+* Build a foundation for future transaction-processing and distributed validation systems.
+
+## Architecture
+
+Current prototype:
+
+Producer Threads
+↓
+Crossbeam MPSC Channel
+↓
+Priority Scheduler (WRR)
+↓
+Consumer Worker
+↓
+Telemetry & Statistics
+
+## Implemented Features
+
+* Lock-free message passing using Crossbeam.
+* Weighted Round Robin scheduling.
+* Priority-aware packet processing.
+* Throughput measurement (Mpps).
+* Tail latency analysis (P50/P95/P99/P99.9).
+* Scalability benchmarking.
 
 ## Key Results
 
-### Lock-Based vs Lock-Free Benchmark
+### Lock-Based vs Lock-Free
 
-Workload:
+| Structure      | Time   |
+| -------------- | ------ |
+| DashMap        | ~1.29s |
+| Crossbeam MPSC | ~0.58s |
 
-* 4 Producers
-* 1 Consumer
-* 10 Million Operations
+Workload: 10 million operations.
 
-Results:
+### Scalability
 
-| Architecture               | Time  |
-| -------------------------- | ----- |
-| DashMap (Lock-Based)       | 1.29s |
-| Crossbeam MPSC (Lock-Free) | 0.58s |
+| Producers | Throughput |
+| --------- | ---------- |
+| 4         | 3.12 Mpps  |
+| 16        | 2.88 Mpps  |
 
-Observed speedup:
+The results reveal a saturation point caused by the single-consumer architecture.
 
-* ~2.2x improvement using lock-free message passing
+## Repository Structure
 
-### Hardware Telemetry
+README.md
 
-Measured using Linux perf:
+DESIGN.md
 
-* IPC: 0.7
-* L1 Cache Miss Rate: 13.9%
-* Branch Miss Rate: 1.0%
-* CPU Migrations: 0
-* Context Switches: 0
+BENCHMARKS.md
 
-These measurements are used to study how memory locality and synchronization mechanisms affect throughput.
+PERF_ANALYSIS.md
 
-## Technical Focus
+src/
 
-The project currently explores:
+benchmarks/
 
-* Rust concurrency primitives
-* Crossbeam channels
-* Lock-free pipelines
-* Cache-aware data layouts
-* Atomic operations
-* Multi-threaded benchmarking
+## Future Work
 
-## Roadmap
+* Multi-consumer worker pools.
+* NUMA-aware scheduling.
+* Bounded queues and backpressure.
+* CPU affinity experiments.
+* PQC transaction validation workloads.
 
-* Transaction processing workloads
-* Cache-line aware structures
-* NUMA-aware experiments
-* PQC admission pipeline simulations
-* Extended hardware profiling with perf c2c
-
-## Disclaimer
-
-This repository is an engineering research project and benchmarking platform. Performance results are workload-dependent and should not be interpreted as universal improvements for all applications.
