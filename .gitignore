@@ -1,1 +1,8 @@
+# Rust
 /target
+Cargo.lock
+
+# System and Tooling
+.rustup/
+.vscode-server/
+.cache/
