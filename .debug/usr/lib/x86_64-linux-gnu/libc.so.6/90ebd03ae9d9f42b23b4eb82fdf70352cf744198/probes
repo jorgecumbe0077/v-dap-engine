@@ -1,0 +1,135 @@
+%sdt_libc:setjmp=setjmp
+p:sdt_libc/setjmp /usr/lib/x86_64-linux-gnu/libc.so.6:0x45825 arg1=%di:u64 arg2=%si:s32 arg3=%ax:u64
+%sdt_libc:longjmp=longjmp
+p:sdt_libc/longjmp /usr/lib/x86_64-linux-gnu/libc.so.6:0x1430b1 arg1=%di:u64 arg2=%si:s32 arg3=%dx:u64
+p:sdt_libc/longjmp /usr/lib/x86_64-linux-gnu/libc.so.6:0x45a03 arg1=%di:u64 arg2=%si:s32 arg3=%dx:u64
+p:sdt_libc/longjmp /usr/lib/x86_64-linux-gnu/libc.so.6:0x45a87 arg1=%di:u64 arg2=%si:s32 arg3=%dx:u64
+%sdt_libc:longjmp_target=longjmp_target
+p:sdt_libc/longjmp_target /usr/lib/x86_64-linux-gnu/libc.so.6:0x1430cd arg1=%di:u64 arg2=%ax:s32 arg3=%dx:u64
+p:sdt_libc/longjmp_target /usr/lib/x86_64-linux-gnu/libc.so.6:0x45a1f arg1=%di:u64 arg2=%ax:s32 arg3=%dx:u64
+p:sdt_libc/longjmp_target /usr/lib/x86_64-linux-gnu/libc.so.6:0x45aa3 arg1=%di:u64 arg2=%ax:s32 arg3=%dx:u64
+%sdt_libc:lll_lock_wait_private=lll_lock_wait_private
+p:sdt_libc/lll_lock_wait_private /usr/lib/x86_64-linux-gnu/libc.so.6:0xa0b86 arg1=%di:u64
+%sdt_libc:lll_lock_wait=lll_lock_wait
+p:sdt_libc/lll_lock_wait /usr/lib/x86_64-linux-gnu/libc.so.6:0xa0be9 arg1=%di:u64
+%sdt_libc:cond_broadcast=cond_broadcast
+p:sdt_libc/cond_broadcast /usr/lib/x86_64-linux-gnu/libc.so.6:0xa29a1 arg1=%di:u64
+%sdt_libc:cond_destroy=cond_destroy
+p:sdt_libc/cond_destroy /usr/lib/x86_64-linux-gnu/libc.so.6:0xa2c54 arg1=%di:u64
+%sdt_libc:cond_init=cond_init
+p:sdt_libc/cond_init /usr/lib/x86_64-linux-gnu/libc.so.6:0xa2d08 arg1=%di:u64 arg2=%si:u64
+%sdt_libc:cond_signal=cond_signal
+p:sdt_libc/cond_signal /usr/lib/x86_64-linux-gnu/libc.so.6:0xa2d24 arg1=%di:u64
+%sdt_libc:cond_wait=cond_wait
+p:sdt_libc/cond_wait /usr/lib/x86_64-linux-gnu/libc.so.6:0xa323b arg1=%di:u64 arg2=%si:u64
+p:sdt_libc/cond_wait /usr/lib/x86_64-linux-gnu/libc.so.6:0xa34da arg1=%di:u64 arg2=%si:u64
+p:sdt_libc/cond_wait /usr/lib/x86_64-linux-gnu/libc.so.6:0xa37a4 arg1=%di:u64 arg2=%si:u64
+%sdt_libc:pthread_start=pthread_start
+p:sdt_libc/pthread_start /usr/lib/x86_64-linux-gnu/libc.so.6:0xa3f3d arg1=%bx:u64 arg2=+1600(%bx):u64 arg3=+1608(%bx):u64
+%sdt_libc:pthread_create=pthread_create
+p:sdt_libc/pthread_create /usr/lib/x86_64-linux-gnu/libc.so.6:0xa4886 arg1=%ax:u64 arg2=%r13:u64 arg3=-240(%bp):u64 arg4=-248(%bp):u64
+%sdt_libc:pthread_join=pthread_join
+p:sdt_libc/pthread_join /usr/lib/x86_64-linux-gnu/libc.so.6:0xa5fd7 arg1=%r12:u64
+%sdt_libc:pthread_join_ret=pthread_join_ret
+p:sdt_libc/pthread_join_ret /usr/lib/x86_64-linux-gnu/libc.so.6:0xa600a arg1=%r12:u64 arg2=%ax:s32 arg3=%bx:u64
+%sdt_libc:mutex_acquired=mutex_acquired
+p:sdt_libc/mutex_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa65e0 arg1=%bx:u64
+p:sdt_libc/mutex_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa6c2d arg1=%di:u64
+p:sdt_libc/mutex_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa73bf arg1=%bx:u64
+p:sdt_libc/mutex_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa79d0 arg1=%di:u64
+%sdt_libc:mutex_entry=mutex_entry
+p:sdt_libc/mutex_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xa6bf7 arg1=%di:u64
+p:sdt_libc/mutex_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xa7987 arg1=%di:u64
+%sdt_libc:mutex_destroy=mutex_destroy
+p:sdt_libc/mutex_destroy /usr/lib/x86_64-linux-gnu/libc.so.6:0xa7054 arg1=%di:u64
+%sdt_libc:mutex_init=mutex_init
+p:sdt_libc/mutex_init /usr/lib/x86_64-linux-gnu/libc.so.6:0xa7147 arg1=%r8:u64
+%sdt_libc:mutex_timedlock_acquired=mutex_timedlock_acquired
+p:sdt_libc/mutex_timedlock_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa7f48 arg1=%bx:u64
+p:sdt_libc/mutex_timedlock_acquired /usr/lib/x86_64-linux-gnu/libc.so.6:0xa8388 arg1=%bx:u64
+%sdt_libc:mutex_clocklock_entry=mutex_clocklock_entry
+p:sdt_libc/mutex_clocklock_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xa87f9 arg1=%di:u64 arg2=%si:s32 arg3=%dx:u64
+%sdt_libc:mutex_timedlock_entry=mutex_timedlock_entry
+p:sdt_libc/mutex_timedlock_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xa8817 arg1=%di:u64 arg2=%si:u64
+%sdt_libc:mutex_release=mutex_release
+p:sdt_libc/mutex_release /usr/lib/x86_64-linux-gnu/libc.so.6:0xa8f7f arg1=%r8:u64
+p:sdt_libc/mutex_release /usr/lib/x86_64-linux-gnu/libc.so.6:0xa8fe9 arg1=%r8:u64
+p:sdt_libc/mutex_release /usr/lib/x86_64-linux-gnu/libc.so.6:0xa92ad arg1=%di:u64
+p:sdt_libc/mutex_release /usr/lib/x86_64-linux-gnu/libc.so.6:0xa938d arg1=%di:u64
+%sdt_libc:rwlock_destroy=rwlock_destroy
+p:sdt_libc/rwlock_destroy /usr/lib/x86_64-linux-gnu/libc.so.6:0xa9fa4 arg1=%di:u64
+%sdt_libc:rdlock_entry=rdlock_entry
+p:sdt_libc/rdlock_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xaa010 arg1=%di:u64
+%sdt_libc:rdlock_acquire_read=rdlock_acquire_read
+p:sdt_libc/rdlock_acquire_read /usr/lib/x86_64-linux-gnu/libc.so.6:0xaa046 arg1=%bx:u64
+%sdt_libc:rwlock_unlock=rwlock_unlock
+p:sdt_libc/rwlock_unlock /usr/lib/x86_64-linux-gnu/libc.so.6:0xaaa1e arg1=%di:u64
+%sdt_libc:wrlock_entry=wrlock_entry
+p:sdt_libc/wrlock_entry /usr/lib/x86_64-linux-gnu/libc.so.6:0xaabe0 arg1=%di:u64
+%sdt_libc:wrlock_acquire_write=wrlock_acquire_write
+p:sdt_libc/wrlock_acquire_write /usr/lib/x86_64-linux-gnu/libc.so.6:0xaac48 arg1=%r9:u64
+%sdt_libc:memory_mallopt_arena_max=memory_mallopt_arena_max
+p:sdt_libc/memory_mallopt_arena_max /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0a47 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_arena_max /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b17 arg1=%si:u64
+%sdt_libc:memory_mallopt_arena_test=memory_mallopt_arena_test
+p:sdt_libc/memory_mallopt_arena_test /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0a57 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_arena_test /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b2f arg1=%si:u64
+%sdt_libc:memory_tunable_tcache_count=memory_tunable_tcache_count
+p:sdt_libc/memory_tunable_tcache_count /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0a70 arg1=%ax:u64
+%sdt_libc:memory_tunable_tcache_unsorted_limit=memory_tunable_tcache_unsorted_limit
+p:sdt_libc/memory_tunable_tcache_unsorted_limit /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0a87 arg1=%ax:u64
+%sdt_libc:memory_tunable_tcache_max_bytes=memory_tunable_tcache_max_bytes
+p:sdt_libc/memory_tunable_tcache_max_bytes /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0aad arg1=%dx:u64
+%sdt_libc:memory_mallopt_mmap_max=memory_mallopt_mmap_max
+p:sdt_libc/memory_mallopt_mmap_max /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0b07 arg1=%ax:s32
+p:sdt_libc/memory_mallopt_mmap_max /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b50 arg1=%si:s32
+%sdt_libc:memory_mallopt_trim_threshold=memory_mallopt_trim_threshold
+p:sdt_libc/memory_mallopt_trim_threshold /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0b27 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_trim_threshold /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6ad3 arg1=%si:u64
+%sdt_libc:memory_mallopt_perturb=memory_mallopt_perturb
+p:sdt_libc/memory_mallopt_perturb /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0b47 arg1=%ax:s32
+p:sdt_libc/memory_mallopt_perturb /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b40 arg1=%si:s32
+%sdt_libc:memory_mallopt_top_pad=memory_mallopt_top_pad
+p:sdt_libc/memory_mallopt_top_pad /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0b57 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_top_pad /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b8b arg1=%si:u64
+%sdt_libc:memory_mallopt_mmap_threshold=memory_mallopt_mmap_threshold
+p:sdt_libc/memory_mallopt_mmap_threshold /usr/lib/x86_64-linux-gnu/libc.so.6:0xb0b77 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_mmap_threshold /usr/lib/x86_64-linux-gnu/libc.so.6:0xb4e36 arg1=%ax:u64
+p:sdt_libc/memory_mallopt_mmap_threshold /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6b6b arg1=%si:u64
+%sdt_libc:memory_heap_new=memory_heap_new
+p:sdt_libc/memory_heap_new /usr/lib/x86_64-linux-gnu/libc.so.6:0xb15a4 arg1=%bx:u64 arg2=%r12:u64
+%sdt_libc:memory_arena_reuse_free_list=memory_arena_reuse_free_list
+p:sdt_libc/memory_arena_reuse_free_list /usr/lib/x86_64-linux-gnu/libc.so.6:0xb1771 arg1=%dx:u64
+%sdt_libc:memory_arena_reuse=memory_arena_reuse
+p:sdt_libc/memory_arena_reuse /usr/lib/x86_64-linux-gnu/libc.so.6:0xb18c5 arg1=%dx:u64 arg2=%r10:u64
+%sdt_libc:memory_arena_reuse_wait=memory_arena_reuse_wait
+p:sdt_libc/memory_arena_reuse_wait /usr/lib/x86_64-linux-gnu/libc.so.6:0xb19db arg1=%dx:u64 arg2=%dx:u64 arg3=%r10:u64
+%sdt_libc:memory_arena_new=memory_arena_new
+p:sdt_libc/memory_arena_new /usr/lib/x86_64-linux-gnu/libc.so.6:0xb1b12 arg1=%dx:u64 arg2=%r9:u64
+%sdt_libc:memory_arena_retry=memory_arena_retry
+p:sdt_libc/memory_arena_retry /usr/lib/x86_64-linux-gnu/libc.so.6:0xb1e2b arg1=%si:u64 arg2=%di:u64
+%sdt_libc:memory_sbrk_less=memory_sbrk_less
+p:sdt_libc/memory_sbrk_less /usr/lib/x86_64-linux-gnu/libc.so.6:0xb1f6b arg1=%ax:u64 arg2=%dx:s64
+%sdt_libc:memory_heap_free=memory_heap_free
+p:sdt_libc/memory_heap_free /usr/lib/x86_64-linux-gnu/libc.so.6:0xb20ec arg1=%di:u64 arg2=+16(%di):u64
+%sdt_libc:memory_heap_less=memory_heap_less
+p:sdt_libc/memory_heap_less /usr/lib/x86_64-linux-gnu/libc.so.6:0xb2209 arg1=%r12:u64 arg2=%r14:u64
+%sdt_libc:memory_mallopt_free_dyn_thresholds=memory_mallopt_free_dyn_thresholds
+p:sdt_libc/memory_mallopt_free_dyn_thresholds /usr/lib/x86_64-linux-gnu/libc.so.6:0xb268f arg1=%ax:u64 arg2=%dx:u64
+p:sdt_libc/memory_mallopt_free_dyn_thresholds /usr/lib/x86_64-linux-gnu/libc.so.6:0xb4f62 arg1=%dx:u64 arg2=%ax:u64
+%sdt_libc:memory_heap_more=memory_heap_more
+p:sdt_libc/memory_heap_more /usr/lib/x86_64-linux-gnu/libc.so.6:0xb3578 arg1=%r12:u64 arg2=%r13:u64
+%sdt_libc:memory_sbrk_more=memory_sbrk_more
+p:sdt_libc/memory_sbrk_more /usr/lib/x86_64-linux-gnu/libc.so.6:0xb3c07 arg1=%r12:u64 arg2=%r13:u64
+%sdt_libc:memory_malloc_retry=memory_malloc_retry
+p:sdt_libc/memory_malloc_retry /usr/lib/x86_64-linux-gnu/libc.so.6:0xb4070 arg1=%bx:u64
+%sdt_libc:memory_calloc_retry=memory_calloc_retry
+p:sdt_libc/memory_calloc_retry /usr/lib/x86_64-linux-gnu/libc.so.6:0xb4352 arg1=%bx:u64
+%sdt_libc:memory_memalign_retry=memory_memalign_retry
+p:sdt_libc/memory_memalign_retry /usr/lib/x86_64-linux-gnu/libc.so.6:0xb54f0 arg1=%r10:u64 arg2=%r8:u64
+%sdt_libc:memory_tcache_double_free=memory_tcache_double_free
+p:sdt_libc/memory_tcache_double_free /usr/lib/x86_64-linux-gnu/libc.so.6:0xb583e arg1=%di:u64 arg2=%r9:u64
+%sdt_libc:memory_realloc_retry=memory_realloc_retry
+p:sdt_libc/memory_realloc_retry /usr/lib/x86_64-linux-gnu/libc.so.6:0xb5dd0 arg1=%r9:u64 arg2=%r8:u64
+%sdt_libc:memory_mallopt=memory_mallopt
+p:sdt_libc/memory_mallopt /usr/lib/x86_64-linux-gnu/libc.so.6:0xb6ab3 arg1=%dx:s32 arg2=%si:s32
