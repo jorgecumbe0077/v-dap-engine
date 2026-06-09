@@ -1,0 +1,13 @@
+name: Rust Benchmark
+
+on: [push]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Run Benchmarks
+        run: cargo bench
