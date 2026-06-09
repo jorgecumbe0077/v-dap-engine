@@ -10,4 +10,5 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
       - name: Run Benchmarks
+        working-directory: ./performance_benchmark
         run: cargo bench
