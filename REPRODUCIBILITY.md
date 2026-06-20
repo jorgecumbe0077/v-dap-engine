@@ -17,27 +17,34 @@ The goal is to verify that the observed behavior is not dependent on a single de
 
 # Environment A
 
-## Desktop Linux
+## Reproducing on Desktop (Windows, Linux, macOS)
+To reproduce the benchmark on a desktop environment, you need the Rust toolchain.
 
-Architecture:
+1. Prerequisites
+Install the Rust toolchain by following the official guide at rustup.rs.
+On Linux/macOS: Run curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-```
-x86_64
-```
+On Windows: Download and run rustup-init.exe from the website
+2. Obtain the Source Code
 
-Build:
+Bash
+git clone https://github.com/jorgecumbe0077/v-dap-engine.git
+cd v-dap-engine
 
-```bash
+3. Compile the Engine
+
+Bash
 cargo build --release
-```
 
-Run:
+4. Execute the Benchmark
+   
+Bash
 
-```bash
+# On Linux/macOS:
 ./target/release/v-dap-engine
-```
 
----
+# On Windows:
+.\target\release\v-dap-engine.exe
 
 # Environment B
 
