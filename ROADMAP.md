@@ -14,3 +14,29 @@
 - [ ] Distributed validation worker nodes.
 - [ ] Persistent storage layer for transaction indexing.
 - [ ] Full integration with production-grade blockchain runtimes.
+
+- [ ] # Roadmap
+
+
+## Completed
+
+[x] Lock-free transaction pipeline
+
+[x] PQC validation benchmark
+
+[x] Multithread scaling analysis
+
+[x] Reproducible builds
+
+
+## Next
+
+[ ] Real network ingestion
+
+[ ] Persistent mempool storage
+
+[ ] Distributed validation nodes
+
+[ ] Hardware profiling with perf
+
+[ ] Cloud benchmark
