@@ -25,17 +25,19 @@ Install the Rust toolchain by following the official guide at rustup.rs.
 On Linux/macOS: Run curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 On Windows: Download and run rustup-init.exe from the website
+
 2. Obtain the Source Code
 
-Bash
+```Bash
 git clone https://github.com/jorgecumbe0077/v-dap-engine.git
 cd v-dap-engine
+```
 
 3. Compile the Engine
 
-Bash
+```Bash
 cargo build --release
-
+```
 4. Execute the Benchmark
    
 Bash
