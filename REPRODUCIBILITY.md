@@ -22,9 +22,10 @@ To reproduce the benchmark on a desktop environment, you need the Rust toolchain
 
 1. Prerequisites
 Install the Rust toolchain by following the official guide at rustup.rs.
-On Linux/macOS: Run ``` curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+On Linux/macOS: Run
+```Bash curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
 ```
-On Windows: Download and run ```rustup-init.exe``` from the website
+On Windows: Download and run ```Bash rustup-init.exe``` from the website
 
 2. Obtain the Source Code
 
@@ -40,7 +41,7 @@ cargo build --release
 ```
 4. Execute the Benchmark
    
-Bash
+
 
 # On Linux/macOS:
 ```Bash
