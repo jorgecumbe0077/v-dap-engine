@@ -22,9 +22,9 @@ To reproduce the benchmark on a desktop environment, you need the Rust toolchain
 
 1. Prerequisites
 Install the Rust toolchain by following the official guide at rustup.rs.
-On Linux/macOS: Run curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-On Windows: Download and run rustup-init.exe from the website
+On Linux/macOS: Run ``` curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+```
+On Windows: Download and run ```rustup-init.exe``` from the website
 
 2. Obtain the Source Code
 
@@ -43,10 +43,14 @@ cargo build --release
 Bash
 
 # On Linux/macOS:
+```Bash
 ./target/release/v-dap-engine
+```
 
 # On Windows:
+```Bash
 .\target\release\v-dap-engine.exe
+```
 
 # Environment B
 
