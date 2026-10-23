@@ -2,33 +2,26 @@ mod tsc;
 use clap::Parser;
 use v_dap_engine::tail_detector::{RobustReference, TailClassification};
 use pqcrypto_dilithium::dilithium2 as dilithium;
-use std::time::{Instant, Duration};
-use std::thread;
+use std::time::Instant;
 
 #[derive(Parser, Debug)]
 struct Args {
-    #[arg(short, long, default_value = "dilithium")]
-    algo: String,
-
-    #[arg(long)]
-    adaptive: bool,
-
     #[arg(long, default_value_t = 100_000)]
     operations: usize,
-
-    #[arg(long, default_value_t = 1)]
-    precision_step: u64,
 }
 
 fn main() {
     let args = Args::parse();
 
-    // FSGear: O divisor de frequência fundamental para o blink timing (Q-Displacement)
-    const FS_GEAR_RATIO: f64 = 5_167_525_270.817;
-    let blink_interval = Duration::from_nanos((args.precision_step * 1000) / (FS_GEAR_RATIO / 1e9) as u64);
+    if args.operations == 0 {
+        eprintln!("Erro: --operations deve ser maior que zero.");
+        std::process::exit(2);
+    }
 
-    println!("Iniciando execução | Modo: {} | Operações: {}",
-             if args.adaptive { "ADAPTATIVO" } else { "BASELINE" }, args.operations);
+    println!(
+        "Iniciando execução | Modo: BASELINE | Operações: {}",
+        args.operations
+    );
 
     let start = Instant::now();
     let tsc_start = tsc::read();
@@ -101,7 +94,8 @@ fn main() {
         .iter()
         .map(|ticks| ticks.to_string())
         .collect::<Vec<_>>()
-        .join("\n");
+        .join("\n")
+        + "\n";
 
     std::fs::write(raw_path, raw_data)
         .expect("falha ao escrever latências brutas");
