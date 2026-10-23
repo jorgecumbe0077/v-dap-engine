@@ -25,24 +25,89 @@ The payment-gateway timeout results are laboratory observations, not production 
 - `Cargo.toml` and `Cargo.lock` — package metadata and locked dependencies.
 - `evidence/` — experimental reports and evidence manifests.
 
-## Build check
+## Reproduction from a clean checkout
 
-The selected source snapshot passed:
+These steps let a reviewer build and run the published source without
+using a previously compiled V-DAP binary or local experiment files.
+
+### Prerequisites
+
+- Git
+- Rust toolchain (`rustc` and `cargo`)
+- A native C build toolchain supported by the Rust dependencies
+
+Record the operating system and toolchain versions when reporting results.
+
+### 1. Clone and identify the source
 
 ```bash
-cargo check --locked
+git clone --branch main https://github.com/jorgecumbe0077/v-dap-engine.git
+cd v-dap-engine
+
+git rev-parse HEAD
+git log -1 --oneline
+rustc --version
+cargo --version
+uname -a
 ```
 
-This checks the source without establishing that a release binary is reproducible or identical to any previously measured binary. Two compiler warnings were reported.
+Include the commit hash and environment details in any reproduction report.
 
-To build locally:
+### 2. Run tests and build
 
 ```bash
+cargo test --locked
 cargo build --release --locked
 ```
 
-The build command has not been represented here as an independently validated reproduction of the original experimental binary.
+A successful result means the tests passed and the release build completed
+in that environment. It does not establish equivalence to a previously
+measured binary.
 
+### 3. Check the CLI
+
+```bash
+./target/release/v-dap-engine --help
+```
+
+The documented CLI currently exposes `--operations` and `--help`.
+
+### 4. Run one operation outside the source tree
+
+```bash
+set -eu
+
+BIN="$PWD/target/release/v-dap-engine"
+OUT_DIR="$(mktemp -d)"
+
+(
+  cd "$OUT_DIR"
+  "$BIN" --operations 1
+  test -f v03_latencies_raw.txt
+  test "$(wc -l < v03_latencies_raw.txt)" -eq 1
+  awk 'NF != 1 || $1 !~ /^[0-9]+$/ { exit 1 } END {
+    if (NR != 1) exit 1
+  }' v03_latencies_raw.txt
+  echo "Raw output check passed"
+)
+```
+
+The one-operation run should create a raw latency file containing one
+numeric record. The measured value, tail classification, and throughput
+can vary between runs and machines.
+
+### Interpretation and limitations
+
+- Passing tests validates the tested code paths, not every runtime condition.
+- A successful build and one-operation run demonstrate basic build and
+  execution, not statistical reliability or independent replication.
+- TSC values are reported as ticks; they must not be assumed to be
+  nanoseconds without a justified calibration.
+- A tail classification does not by itself identify its cause.
+- These steps do not demonstrate timeout prevention, causality, production
+  suitability, or diagnostic superiority over conventional observability.
+- Report the exact commit, environment, commands, outputs, failures, and
+  deviations. Do not omit failed runs.
 ## Version note
 
 The package metadata currently identifies the Rust crate as `0.2.0`, while the principal evidence report refers to the experimental engine as V-DAP v0.3. These labels are preserved transparently; they should not be interpreted as proof of a formally reproducible v0.3 release.
