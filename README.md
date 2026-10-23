@@ -47,14 +47,25 @@ The build command has not been represented here as an independently validated re
 
 The package metadata currently identifies the Rust crate as `0.2.0`, while the principal evidence report refers to the experimental engine as V-DAP v0.3. These labels are preserved transparently; they should not be interpreted as proof of a formally reproducible v0.3 release.
 
-## Evidence
+## Evidence and review guide
 
-Start with:
+For an initial technical review, read the documents in this order:
 
-- `evidence/V-DAP_V0.3_FINAL_EVIDENCE_REPORT.txt`
-- `evidence/V-DAP_EVIDENCE_MANIFEST_PILOT_v1.txt`
-- `evidence/V-DAP_EXTERNAL_PILOT_EVIDENCE_REPORT_v0.1.md`
-- `evidence/V-DAP_EXTERNAL_PILOT_EVIDENCE_MANIFEST_v0.1.txt`
+1. **Experimental results and limitations:**
+   `evidence/V-DAP_V0.3_FINAL_EVIDENCE_REPORT.txt`
+
+2. **Pilot evidence manifest:**
+   `evidence/V-DAP_EVIDENCE_MANIFEST_PILOT_v1.txt`
+
+3. **External pilot report:**
+   `evidence/V-DAP_EXTERNAL_PILOT_EVIDENCE_REPORT_v0.1.md`
+
+4. **External pilot evidence manifest:**
+   `evidence/V-DAP_EXTERNAL_PILOT_EVIDENCE_MANIFEST_v0.1.txt`
+
+The reports describe experimental work; the manifests help identify the evidence associated with that work. Their presence in this repository does not, by itself, establish independent replication or production validation.
+
+Reviewers should distinguish recorded measurements from interpretation and hypotheses. The current project status and limitations described above remain applicable.
 
 ## Scope
 
