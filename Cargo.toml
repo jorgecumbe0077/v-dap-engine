@@ -1,0 +1,24 @@
+[package]
+name = "v-dap-engine"
+version = "0.2.0"
+edition = "2021"
+
+[features]
+# Ativa a extração de dados de ressonância da malha para validar o equilíbrio mAZ
+telemetry = []
+
+[dependencies]
+# CLI para controle de torque do sistema
+clap = { version = "4.0", features = ["derive"] }
+
+# Bibliotecas de processamento PQC alinhadas com os NeutronGears
+pqcrypto-dilithium = "0.4"
+pqcrypto-kyber = "0.7"
+pqcrypto-sphincsplus = "0.7.2"
+
+# Gerenciador de threads para sincronização de engrenagens (ThreadPool)
+rayon = "1.7"
+
+# Temporização absoluta para medição do desvio de Phi
+chrono = "0.4"
+libc = "0.2.190"

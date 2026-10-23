@@ -1,0 +1,30 @@
+# V-DAP External Pilot — Evidence Manifest v0.1
+
+Generated: 2026-09-25T12:26:44Z
+
+## Evidence status
+
+- OBSERVED: per-request crypto timing and request timing
+- OBSERVED: crypto/non-crypto temporal decomposition
+- OBSERVED: controlled non-crypto perturbation
+- DEMONSTRATED: diagnostic localization in the controlled HTTP service
+- NOT DEMONSTRATED: scheduler causality
+- NOT DEMONSTRATED: production impact
+- NOT DEMONSTRATED: production performance
+
+## Artifacts
+
+f64b103fab89cd2c7ba4ce4140d074da2637bac0613b1720e7b7f20964f889e9  README.md
+9df156c8a40e05b76b665ebaf200d7896d464081be95abc077d8bcdd55c7dc95  schema/pilot_v01.csv
+48feb629c91cc1aec38ec6c716a6cd8c51731d5bcd2c7c72bc1ab169610d735b  adapter/Cargo.toml
+aaf393c0f0601f70495dd911335782d08ff09361bb5786f9b63d1686278465a5  adapter/Cargo.lock
+8d5101bda5e373cd85ed68ce7d9f8e73024fefe7a42f48dc58acee7a18e2002d  adapter/src/tsc.rs
+da4f41f6704eb2022fc7090fbc676d41287e22db6ddad7f27c176a19e90cdb36  adapter/src/main_sequential_diagnostic_control.rs
+57887a5ec8763c3c1f691f1a0bca2caa584b8976d6c79a52b1251420a7ce46ec  adapter/src/main.rs
+6e21084df9dea0713b814b17729f3a2ce0d4ee5008cbaf63cb65f81e9d4672e6  adapter/baseline_adapter_100_release.txt
+e61d54fad4b272816fb7a6c2d40c5b5784aaeb32d415baee31d44ea7f43a3792  adapter/baseline_adapter_100_release_run2.txt
+fa59f9554783e9a151dc3f0f88d3d4b6642f2ae752958609dfcf7705280130f9  adapter/baseline_adapter_100_release_tail.csv
+b3fab5f949a24f20dba600ce6739d8a5f5f59c5e2bd98407ddc653d87b9ab848  adapter/instrumented_release_100_run1.txt
+f8fce062e525fba62ec633cfcc52b7cec44b7653734318fd9816121d3795eca5  evidence/http_diagnostic_v01/run_sequential_100.jsonl
+9be2764dcdeac499494eaf6284af95f0ac4110d354aa1de44384dc5e63ca71e4  evidence/http_diagnostic_v02/run_noncrypto_20.jsonl
+f1294edbf2195ec8c9a3d2075e621ef2c68b6720e764ff34e39fecffce845abe  evidence/V-DAP_EXTERNAL_PILOT_EVIDENCE_REPORT_v0.1.md

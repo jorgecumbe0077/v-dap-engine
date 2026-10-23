@@ -1,0 +1,123 @@
+V-DAP — EVIDENCE MANIFEST — PILOT v1
+========================================================================
+Generated: 2026-09-23T18:49:26
+
+1. CORE EXPERIMENTAL CLAIM
+------------------------------------------------------------------------
+V-DAP Engine é um motor experimental de execução criptográfica cuja investigação empírica revelou e caracterizou estruturas temporais de scheduling durante a execução.
+
+2. EVIDENCE STATUS
+------------------------------------------------------------------------
+OBSERVED       — variabilidade temporal e eventos de cauda medidos.
+REPRODUCED     — padrões observáveis reproduzidos em múltiplas execuções.
+ASSOCIATED     — associações estatísticas/temporais observadas.
+NOT DEMONSTRATED — causalidade, mecanismo de scheduler e benefício sistemático.
+
+3. PAYMENT GATEWAY PILOT RESULT
+------------------------------------------------------------------------
+Experimental chain: Crypto -> Tail -> Request -> Laboratory Impact
+Runs: 4
+Requests: 400
+Tail Events: 17 / 400 (4.25%)
+Laboratory TIMEOUTs: 17 / 400 (4.25%)
+Tail & TIMEOUT: 6
+Normal & TIMEOUT: 11
+P(TIMEOUT | Tail): 35.29%
+P(TIMEOUT | Normal): 2.87%
+
+H1: ASSOCIATION OBSERVED — requests containing Tail Events showed a distinct request-latency distribution.
+H2: INCONCLUSIVE — strong Tail/TIMEOUT association occurred in C1-V02 but was not reproduced consistently across runs.
+C1-V02: candidate temporal regime with simultaneous expansion of cryptographic and request-latency tails.
+
+4. PROVENANCE
+------------------------------------------------------------------------
+FILE=target/release/v-dap-engine
+SIZE=1228480
+SHA256=78112d43a61b82772ba68cca1c0ebcd6fe5fa5609df6f108dc20e715175785d0
+
+FILE=src/main.rs
+SIZE=4166
+SHA256=04be134f812e73d25e660a0ea3fff56139693b27821265f7f854f8774f9811cf
+
+FILE=src/tsc.rs
+SIZE=354
+SHA256=00b4be329f6bd5eeb97a5a6afb0fd9f4625089fde5204d3ce22a0d010daae4e1
+
+FILE=src/tail_detector.rs
+SIZE=1589
+SHA256=070720a7ab69f6fc6136d5a14f43183983387d8432066fd97698987aae33eb87
+
+FILE=v04_tail_baseline_run1_latencies.txt
+SIZE=799
+SHA256=dff657a883f9a9589932d6e00f7c822ae685871e08cbb9e1cc8a5e34a685fd19
+
+FILE=v04_tail_baseline_run2_latencies.txt
+SIZE=799
+SHA256=920d000f78f42ac82bed79f6e970c5ca11a4f78f60885418d461be7d9fe2aef8
+
+FILE=v04_control_c0_repeat_latencies.txt
+SIZE=799
+SHA256=7881105be188bd2431c8108251b3e1e3e0c3b7f5c288a6ffd8f542ac8b5a617e
+
+FILE=v04_control_c0_final_latencies.txt
+SIZE=799
+SHA256=794aef82dca6aa20f2f810b56a583fe89a9b605813a348fe63bc1cb7acfbc3a2
+
+FILE=v04_intervention_c1_latencies.txt
+SIZE=799
+SHA256=2a76cffda549a7d1fb24116a4604a3ed3add01b6f4649dea733ccb41d8dc8c49
+
+FILE=v04_intervention_c1_repeat_latencies.txt
+SIZE=799
+SHA256=501a8ff36581cb9efd19ebe4312d16158d5ed712434448e88447a1a2e5130617
+
+FILE=V-DAP_V0.4_CPU_AFFINITY_EVIDENCE_REPORT.txt
+SIZE=3869
+SHA256=55f54e32fc77030c0f2fcafa455cfaeae0ad142522606ae1ad5ffbd5923fd5d3
+
+FILE=payment_gateway_lab/schema_v0.2.csv
+SIZE=123
+SHA256=2991dfe4204b49660ac0bd1d4ec0154fd8eb9881aaeeb72868f500c0f686716d
+
+FILE=payment_gateway_lab/run_batch_outcome.py
+SIZE=3006
+SHA256=aba2adcf22c4e6250ace08ef06df1c11b6b13a84e67df645a55270c21d6bd310
+
+FILE=payment_gateway_lab/baseline_outcome_v01.csv
+SIZE=7424
+SHA256=c5e090fde3dba71d95cfc2a2c9cd4b2c9df6ce718379958fcc72ab7ef0b2f84b
+
+FILE=payment_gateway_lab/baseline_outcome_v02.csv
+SIZE=7424
+SHA256=5c83af3a6b1e9a956877a77b4b28bb95fb6d3092531f200ac6b9da9ddef10590
+
+FILE=payment_gateway_lab/outcome_affinity_v01.csv
+SIZE=7424
+SHA256=94455dd969b131a7ec8171c2fb07197e8255727f9948bdaff971150525c3a0b1
+
+FILE=payment_gateway_lab/outcome_affinity_v02.csv
+SIZE=7427
+SHA256=42e720bedf3bb27690b41128414a7c7cb2ced4354440d519e53666057677255b
+
+FILE=payment_gateway_lab/V-DAP_PAYMENT_GATEWAY_CRYPTO_REQUEST_IMPACT_FINAL_AUDIT.txt
+SIZE=4647
+SHA256=a615865c8f49508b01154d298f2b03151e714dc0d66ef912328705a2ef1ecb65
+
+5. PAYMENT LABORATORY LIMITATIONS
+------------------------------------------------------------------------
+TIMEOUT é uma regra laboratorial (>5 ms), não um timeout de gateway de produção.
+retry=1 representa uma regra experimental associada ao TIMEOUT; não representa uma segunda tentativa realmente executada.
+A associação Tail/TIMEOUT não estabelece causalidade.
+C1-V02 não possui, neste pacote, uma captura de scheduler que permita atribuir o regime observado a um mecanismo específico.
+taskset -c 0 restringe afinidade permitida; não constitui isolamento físico nem controle causal do scheduler.
+
+6. PILOT DEMONSTRATION THESIS
+------------------------------------------------------------------------
+O valor demonstrado no laboratório é a capacidade de observar, detectar, caracterizar e correlacionar variabilidade temporal de uma operação criptográfica com o comportamento de uma request.
+O objetivo de um piloto real é validar se fenômenos temporais observados numa operação criptográfica possuem relação mensurável com impacto operacional no sistema real.
+
+7. COMMERCIAL BOUNDARY
+------------------------------------------------------------------------
+Não são reivindicados neste pacote: redução garantida de latência, redução de custos, melhoria de SLA, causalidade de scheduler, eliminação de Tail Events ou benefício económico já validado.
+Qualquer impacto económico deve ser medido no sistema real durante um piloto controlado.
+

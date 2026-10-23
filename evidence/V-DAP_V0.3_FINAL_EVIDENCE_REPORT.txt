@@ -1,0 +1,88 @@
+==============================================================================
+V-DAP ENGINE — V0.3 FINAL EVIDENCE REPORT
+==============================================================================
+
+Generated from existing experimental artifacts.
+No benchmark execution, recompilation, or source modification performed.
+Generated UTC: 2026-09-21T15:45:18.895449+00:00
+
+OBJECTIVE
+------------------------------------------------------------------------------
+Characterize experimentally the temporal behavior of the V-DAP cryptographic execution engine, including latency variability and observable interactions with the Linux scheduler.
+
+BOUNDARY OF CLAIM
+------------------------------------------------------------------------------
+V-DAP Engine é um motor experimental de execução criptográfica cuja investigação empírica revelou e caracterizou estruturas temporais de scheduling durante a execução.
+
+IMPORTANT LIMITATIONS
+------------------------------------------------------------------------------
+The observations establish temporal structure and scheduler interaction, not causal responsibility.
+They do not establish that V-DAP causes the observed scheduler regimes.
+They do not establish deterministic execution, physical CPU isolation, scheduler improvement, or a performance advantage.
+The A4 burst is an observational scheduler regime; the exact kernel mechanism initiating it was not identified in this evidence set.
+
+1. PER-OPERATION TSC LATENCY
+------------------------------------------------------------------------------
+Workload measured: Dilithium keypair() + detached_sign(b"data", &sk).
+
+RUN1 samples=100 min=1018725 P50=1817952 P95=4218861 P99=5569695 P99.9=8730893 MAX=8730893
+RUN1 >3M=18 >4M=6 >5M=3
+RUN2 samples=100 min=1127010 P50=1816479 P95=4567284 P99=6994572 P99.9=7077309 MAX=7077309
+RUN2 >3M=20 >4M=7 >5M=5
+
+Interpretation: both independent runs contain a central latency region near 1.8M TSC ticks and a measurable upper tail. The exact high-latency positions are not stable between the two runs.
+
+2. SCHEDULER INTERACTION — ADAPTIVE 1–5
+------------------------------------------------------------------------------
+RUN            TRANS   DURATION(s)      RATE/s    MAX/10ms
+ADAPTIVE_1       198      8.267275       23.95           4
+ADAPTIVE_2       190      8.081582       23.51           3
+ADAPTIVE_3       281      8.253323       34.05           6
+ADAPTIVE_4      4984      8.763806      568.70         553
+ADAPTIVE_5      1587      8.511894      186.44          68
+
+Interpretation: scheduler interaction occurs in all five traces, but with strongly different temporal densities. A4 is an extreme regime relative to A1–A3, while A5 also contains substantial burst activity.
+
+3. A4 MAXIMUM 10 ms BURST
+------------------------------------------------------------------------------
+Window: 2231.480000–2231.490000 s
+V-DAP -> kworker: 553
+kworker -> V-DAP: 554
+Paired intervals: 553
+P50: 6.000 us
+P90: 7.000 us
+P95: 13.000 us
+P99: 16.000 us
+MAX: 27.000 us
+
+Interpretation: the A4 window contains a highly concentrated sequence of alternating scheduler transitions. The paired interval is the timestamp difference between V-DAP -> kworker and the following kworker -> V-DAP transition; it is not automatically equivalent to kworker execution time or causal latency.
+
+4. ARTIFACT INTEGRITY
+------------------------------------------------------------------------------
+cc501b8045dc8059c9b46ed1a2c4846f04d7f9ab6ec61263abe4400175f77abc  v03_latencies_run1.txt
+7c6dd04a4b84a7e8c8b441c40e12b2736baeac478b20ead48ac06f4c47d43ea9  v03_latencies_run2.txt
+f6007feb0621cf6fb8d8b2215b1a14d58b392e6d24b9447d3fb2134f019ce271  sched_repro/adaptive_1_script.txt
+c1670412d7fb0f1e425ca8748096301a35b709c416967dd11916ceede1ea66f2  sched_repro/adaptive_2_script.txt
+e512dc5b0c28e26f53ab2c6c6c14dbc71de5a14f378d5442456ba61b07772c3b  sched_repro/adaptive_3_script.txt
+3e1b5722123da6ec61c62e7f85f19e2479ebcd38ada65e70c6fd91112eda23cd  sched_repro/adaptive_4_script.txt
+96180ba8a7136cd5be88c37cbfe0a86437d6e9c6cc2e2d6943c66932a5cf457f  sched_repro/adaptive_5_script.txt
+b89985447caf7eac8458a48e1008cfb4989c2f9e048c4ea48a53ea3310ae5ee5  V-DAP_EVIDENCE_SNAPSHOT_v1.txt
+
+5. FINAL SCIENTIFIC INTERPRETATION
+------------------------------------------------------------------------------
+The V0.3 evidence establishes that the cryptographic execution environment exhibits measurable temporal variability and that scheduler interactions can occur in qualitatively different regimes.
+Across five scheduler traces, direct V-DAP -> kworker transitions range from tens per second to hundreds per second, with A4 reaching 4,984 transitions and a maximum concentration of 553 such transitions within one 10 ms window.
+The A4 burst is further characterized by 553 paired transitions with median paired interval of 6 us and maximum of 27 us.
+These observations support the bounded statement that empirical investigation of V-DAP revealed and characterized temporal scheduling structures during execution.
+
+6. NOT ESTABLISHED BY THIS REPORT
+------------------------------------------------------------------------------
+• Exact kernel mechanism responsible for entering the A4 regime.
+• Causal direction between V-DAP execution and scheduler behavior.
+• Deterministic execution in the absolute sense.
+• General scheduler or system-performance improvement.
+• Superiority over existing measurement or tracing tools.
+
+==============================================================================
+END OF V0.3 EVIDENCE REPORT
+==============================================================================
